@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3D0146A2-B22C-4522-9F11-3B84DFEC7992}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ItemDB.Presentation</RootNamespace>
+    <RootNamespace>ItemDB</RootNamespace>
     <AssemblyName>ItemDB</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -50,7 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ItemDB.Presentation.App</StartupObject>
+    <StartupObject>ItemDB.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -72,22 +72,27 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="Presentation\App.xaml">
+    <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Presentation\MainWindow.xaml">
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Core\IUnitOfWork.cs" />
-    <Compile Include="Core\IRepository.cs" />
-    <Compile Include="Core\Repositories\IContactRepository.cs" />
-    <Compile Include="Core\Repositories\ILocationsRepository.cs" />
-    <Compile Include="Core\Repositories\IItemsRepository.cs" />
-    <Compile Include="Core\Repositories\IPlacementRepository.cs" />
-    <Compile Include="Core\Repositories\ISourceRepository.cs" />
-    <Compile Include="Presentation\App.xaml.cs">
+    <Compile Include="Core\Model\Contact.cs" />
+    <Compile Include="Core\Model\Item.cs" />
+    <Compile Include="Core\Model\Location.cs" />
+    <Compile Include="Core\Model\Placement.cs" />
+    <Compile Include="Core\Model\Source.cs" />
+    <Compile Include="Core\Storage\IWorkUnit.cs" />
+    <Compile Include="Core\Storage\Repositories\IRepository.cs" />
+    <Compile Include="Core\Storage\Repositories\IContactRepository.cs" />
+    <Compile Include="Core\Storage\Repositories\ILocationRepository.cs" />
+    <Compile Include="Core\Storage\Repositories\IItemRepository.cs" />
+    <Compile Include="Core\Storage\Repositories\IPlacementRepository.cs" />
+    <Compile Include="Core\Storage\Repositories\ISourceRepository.cs" />
+    <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -97,7 +102,7 @@
     </Compile>
     <Compile Include="Storage\Migrations\Configuration.cs" />
     <Compile Include="Storage\ItemStorage.cs" />
-    <Compile Include="Presentation\MainWindow.xaml.cs">
+    <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -131,7 +136,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Storage\Repositories\" />
+    <Folder Include="ViewModel\" />
+    <Folder Include="View\" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EntityFramework">
       <Version>6.2.0</Version>
