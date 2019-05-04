@@ -5,7 +5,7 @@ namespace ItemDB.Storage.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ItemStorage>
+    internal sealed class Configuration : DbMigrationsConfiguration<ItemDbStorage>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@ namespace ItemDB.Storage.Migrations
             MigrationsDirectory = "Storage\\Migrations";
         }
 
-        protected override void Seed(ItemStorage context)
+        protected override void Seed(ItemDbStorage context)
         {
             //  This method will be called after migrating to the latest version.
 
