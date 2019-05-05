@@ -39,6 +39,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -108,6 +109,10 @@
     <Compile Include="Storage\Migrations\201905050000240_RefactorContactAndSourceCrossTableName.Designer.cs">
       <DependentUpon>201905050000240_RefactorContactAndSourceCrossTableName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Storage\Migrations\201905050633590_LimitNameLengths.cs" />
+    <Compile Include="Storage\Migrations\201905050633590_LimitNameLengths.Designer.cs">
+      <DependentUpon>201905050633590_LimitNameLengths.cs</DependentUpon>
+    </Compile>
     <Compile Include="Storage\Migrations\Configuration.cs" />
     <Compile Include="Storage\ItemStorage.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -141,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Storage\Migrations\201905050000240_RefactorContactAndSourceCrossTableName.resx">
       <DependentUpon>201905050000240_RefactorContactAndSourceCrossTableName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Storage\Migrations\201905050633590_LimitNameLengths.resx">
+      <DependentUpon>201905050633590_LimitNameLengths.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -35,18 +35,22 @@ namespace ItemDB.Storage
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Source>().Property(s => s.Name).HasMaxLength(255);
             modelBuilder.Entity<Source>().Property(s => s.SourcedItemId).IsRequired();
             modelBuilder.Entity<Source>().Property(s => s.ContactId).IsRequired();
             
             modelBuilder.Entity<Placement>().Property(p => p.LocationId).IsRequired();
             modelBuilder.Entity<Placement>().Property(p => p.PlacedItemId).IsRequired();
 
+            modelBuilder.Entity<ItemDefinition>().Property(i => i.Name).HasMaxLength(255);
             modelBuilder.Entity<ItemDefinition>().HasMany(i => i.Sources).WithRequired(s => s.SourcedItem).HasForeignKey(s=>s.SourcedItemId);
             modelBuilder.Entity<ItemDefinition>().HasMany(i => i.Placements).WithRequired(p => p.PlacedItem).HasForeignKey(p=>p.PlacedItemId);
 
+            modelBuilder.Entity<Location>().Property(l => l.Name).HasMaxLength(255);
             modelBuilder.Entity<Location>().HasMany(l => l.ItemPlacements).WithRequired(p => p.Location).HasForeignKey(p=>p.LocationId);
             modelBuilder.Entity<Location>().HasMany(l => l.ChildLocations).WithOptional(l => l.ParentLocation).HasForeignKey(p=>p.ParentLocationId);
 
+            modelBuilder.Entity<Contact>().Property(c => c.Name).HasMaxLength(255);
             modelBuilder.Entity<Contact>().HasMany(c => c.ItemSources).WithRequired(s => s.Contact).HasForeignKey(s=>s.ContactId);
             modelBuilder.Entity<Contact>().HasMany(c => c.ItemsManufactured).WithMany(i => i.Manufacturers).Map(m =>
                 m.ToTable(nameof(Contact) +"To"+ nameof(Source)).MapLeftKey(nameof(Contact)+"Id").MapRightKey(nameof(Source)+"Id"));
