@@ -95,7 +95,7 @@
     <Compile Include="Core\Storage\Repositories\IRepository.cs" />
     <Compile Include="Core\Storage\Repositories\IContactRepository.cs" />
     <Compile Include="Core\Storage\Repositories\ILocationRepository.cs" />
-    <Compile Include="Core\Storage\Repositories\IItemRepository.cs" />
+    <Compile Include="Core\Storage\Repositories\IItemDefinitionRepository.cs" />
     <Compile Include="Core\Storage\Repositories\IPlacementRepository.cs" />
     <Compile Include="Core\Storage\Repositories\ISourceRepository.cs" />
     <Compile Include="App.xaml.cs">

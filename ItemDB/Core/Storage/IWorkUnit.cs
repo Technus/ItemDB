@@ -10,7 +10,7 @@ namespace ItemDB.Core.Storage
     public interface IWorkUnit:IDisposable
     {
         IContactRepository Couses { get; }
-        IItemRepository Items { get; }
+        IItemDefinitionRepository Items { get; }
         ILocationRepository Locations { get; }
         IPlacementRepository Placements { get; }
         ISourceRepository Sources { get; }

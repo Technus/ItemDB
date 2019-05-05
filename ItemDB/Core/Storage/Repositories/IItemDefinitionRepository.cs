@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ItemDB.Core.Storage.Repositories
 {
-    public interface IItemRepository :IRepository<ItemDefinition>
+    public interface IItemDefinitionRepository :IRepository<ItemDefinition>
     {
     }
 }

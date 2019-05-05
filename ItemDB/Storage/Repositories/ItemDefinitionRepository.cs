@@ -9,7 +9,7 @@ using ItemDB.Core.Storage.Repositories;
 
 namespace ItemDB.Storage.Repositories
 {
-    class ItemDefinitionRepository:Repository<ItemDefinition>,IItemRepository
+    class ItemDefinitionRepository:Repository<ItemDefinition>,IItemDefinitionRepository
     {
         public ItemDefinitionRepository(DbSet<ItemDefinition> itemDefinitions) : base(itemDefinitions) { }
     }

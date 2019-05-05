@@ -21,13 +21,13 @@ namespace ItemDB.Storage
 
         public IContactRepository Couses => new ContactRepository(_context.Contacts);
 
-        public IItemRepository Items => throw new NotImplementedException();
+        public IItemDefinitionRepository Items => new ItemDefinitionRepository(_context.Items);
 
-        public ILocationRepository Locations => throw new NotImplementedException();
+        public ILocationRepository Locations => new LocationRepository(_context.Locations);
 
-        public IPlacementRepository Placements => throw new NotImplementedException();
+        public IPlacementRepository Placements => new PlacementRepository(_context.Placements);
 
-        public ISourceRepository Sources => throw new NotImplementedException();
+        public ISourceRepository Sources => new SourcesRepository(_context.Sources);
 
         public void Dispose()
         {
