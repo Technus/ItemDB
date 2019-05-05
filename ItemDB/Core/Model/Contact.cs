@@ -12,7 +12,7 @@ namespace ItemDB.Core.Model
     public class Contact : DependencyObject
     {
         public Contact(){
-            ItemsManufactured = new ObservableCollection<Item>();
+            ItemsManufactured = new ObservableCollection<ItemDefinition>();
             ItemSources = new ObservableCollection<Source>();
         }
 
@@ -32,13 +32,13 @@ namespace ItemDB.Core.Model
         public static readonly DependencyProperty NameProperty =
             DependencyProperty.Register(nameof(Name), typeof(string), typeof(Contact));
 
-        public ObservableCollection<Item> ItemsManufactured
+        public ObservableCollection<ItemDefinition> ItemsManufactured
         {
-            get { return (ObservableCollection<Item>)GetValue(ItemsManufacturedProperty); }
+            get { return (ObservableCollection<ItemDefinition>)GetValue(ItemsManufacturedProperty); }
             set { SetValue(ItemsManufacturedProperty, value); }
         }
         public static readonly DependencyProperty ItemsManufacturedProperty =
-            DependencyProperty.Register(nameof(ItemsManufactured), typeof(ObservableCollection<Item>), typeof(Contact));
+            DependencyProperty.Register(nameof(ItemsManufactured), typeof(ObservableCollection<ItemDefinition>), typeof(Contact));
 
         public ObservableCollection<Source> ItemSources
         {

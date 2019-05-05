@@ -37,14 +37,15 @@ namespace ItemDB.Core.Model
         }
         public static readonly DependencyProperty ContactProperty =
             DependencyProperty.Register(nameof(Contact), typeof(Contact), typeof(Source));
+        public int ContactId { get; set; }
 
-        public Item SourcedItem
+        public ItemDefinition SourcedItem
         {
-            get { return (Item)GetValue(ItemProperty); }
-            set { SetValue(ItemProperty, value); }
+            get { return (ItemDefinition)GetValue(SourcedItemProperty); }
+            set { SetValue(SourcedItemProperty, value); }
         }
-        public static readonly DependencyProperty ItemProperty =
-            DependencyProperty.Register(nameof(SourcedItem), typeof(Item), typeof(Source));
-
+        public static readonly DependencyProperty SourcedItemProperty =
+            DependencyProperty.Register(nameof(SourcedItem), typeof(ItemDefinition), typeof(Source));
+        public int SourcedItemId { get; set; }
     }
 }

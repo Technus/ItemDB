@@ -8,9 +8,9 @@ using System.Collections.ObjectModel;
 
 namespace ItemDB.Core.Model
 {
-    public class Item :DependencyObject
+    public class ItemDefinition :DependencyObject
     {
-        public Item()
+        public ItemDefinition()
         {
             Manufacturers = new ObservableCollection<Contact>();
             Placements = new ObservableCollection<Placement>();
@@ -23,7 +23,7 @@ namespace ItemDB.Core.Model
             set { SetValue(IdProperty, value); }
         }
         public static readonly DependencyProperty IdProperty =
-            DependencyProperty.Register(nameof(Id), typeof(int), typeof(Item));
+            DependencyProperty.Register(nameof(Id), typeof(int), typeof(ItemDefinition));
 
         public string Name
         {
@@ -31,7 +31,7 @@ namespace ItemDB.Core.Model
             set { SetValue(NameProperty, value); }
         }
         public static readonly DependencyProperty NameProperty =
-            DependencyProperty.Register(nameof(Name), typeof(string), typeof(Item));
+            DependencyProperty.Register(nameof(Name), typeof(string), typeof(ItemDefinition));
 
         public ObservableCollection<Contact> Manufacturers
         {
@@ -39,7 +39,7 @@ namespace ItemDB.Core.Model
             set { SetValue(ManufacturersProperty, value); }
         }
         public static readonly DependencyProperty ManufacturersProperty =
-            DependencyProperty.Register(nameof(Manufacturers), typeof(ObservableCollection<Contact>), typeof(Item));
+            DependencyProperty.Register(nameof(Manufacturers), typeof(ObservableCollection<Contact>), typeof(ItemDefinition));
 
         public ObservableCollection<Placement> Placements
         {
@@ -47,7 +47,7 @@ namespace ItemDB.Core.Model
             set { SetValue(PlacementsProperty, value); }
         }
         public static readonly DependencyProperty PlacementsProperty =
-            DependencyProperty.Register(nameof(Placements), typeof(ObservableCollection<Placement>), typeof(Item));
+            DependencyProperty.Register(nameof(Placements), typeof(ObservableCollection<Placement>), typeof(ItemDefinition));
 
         public ObservableCollection<Source> Sources
         {
@@ -55,6 +55,6 @@ namespace ItemDB.Core.Model
             set { SetValue(SourcesProperty, value); }
         }
         public static readonly DependencyProperty SourcesProperty =
-            DependencyProperty.Register(nameof(Sources), typeof(ObservableCollection<Source>), typeof(Item));
+            DependencyProperty.Register(nameof(Sources), typeof(ObservableCollection<Source>), typeof(ItemDefinition));
     }
 }

@@ -22,13 +22,14 @@ namespace ItemDB.Core.Model
         public static readonly DependencyProperty IdProperty =
             DependencyProperty.Register(nameof(Id), typeof(int), typeof(Placement));
 
-        public Item PlacedItem
+        public ItemDefinition PlacedItem
         {
-            get { return (Item)GetValue(PlacedItemProperty); }
+            get { return (ItemDefinition)GetValue(PlacedItemProperty); }
             set { SetValue(PlacedItemProperty, value); }
         }
         public static readonly DependencyProperty PlacedItemProperty =
-            DependencyProperty.Register(nameof(PlacedItem), typeof(Item), typeof(Placement));
+            DependencyProperty.Register(nameof(PlacedItem), typeof(ItemDefinition), typeof(Placement));
+        public int PlacedItemId { get; set; }
 
         public Location Location
         {
@@ -37,6 +38,7 @@ namespace ItemDB.Core.Model
         }
         public static readonly DependencyProperty LocationProperty =
             DependencyProperty.Register(nameof(Location), typeof(Location), typeof(Placement));
+        public int LocationId { get; set; }
 
         public decimal Count
         {
@@ -45,6 +47,5 @@ namespace ItemDB.Core.Model
         }
         public static readonly DependencyProperty CountProperty =
             DependencyProperty.Register(nameof(Count), typeof(decimal), typeof(Placement));
-
     }
 }

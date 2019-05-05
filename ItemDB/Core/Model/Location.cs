@@ -40,6 +40,7 @@ namespace ItemDB.Core.Model
         }
         public static readonly DependencyProperty ParentLocationProperty =
             DependencyProperty.Register(nameof(ParentLocation), typeof(Location), typeof(Location));
+        public int? ParentLocationId { get; set; }
 
         public ObservableCollection<Location> ChildLocations
         {
@@ -54,6 +55,7 @@ namespace ItemDB.Core.Model
             get { return (ObservableCollection<Placement>)GetValue(ItemPlacmentsProperty); }
             set { SetValue(ItemPlacmentsProperty, value); }
         }
+
         public static readonly DependencyProperty ItemPlacmentsProperty =
             DependencyProperty.Register(nameof(ItemPlacements), typeof(ObservableCollection<Placement>), typeof(Location));
     }
