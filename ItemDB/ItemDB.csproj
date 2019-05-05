@@ -100,6 +100,14 @@
     <Compile Include="Storage\Migrations\201905041358051_Initial.Designer.cs">
       <DependentUpon>201905041358051_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Storage\Migrations\201905042353576_InitialModelImplementation.cs" />
+    <Compile Include="Storage\Migrations\201905042353576_InitialModelImplementation.Designer.cs">
+      <DependentUpon>201905042353576_InitialModelImplementation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Storage\Migrations\201905050000240_RefactorContactAndSourceCrossTableName.cs" />
+    <Compile Include="Storage\Migrations\201905050000240_RefactorContactAndSourceCrossTableName.Designer.cs">
+      <DependentUpon>201905050000240_RefactorContactAndSourceCrossTableName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Storage\Migrations\Configuration.cs" />
     <Compile Include="Storage\ItemStorage.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -127,6 +135,12 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Storage\Migrations\201905042353576_InitialModelImplementation.resx">
+      <DependentUpon>201905042353576_InitialModelImplementation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Storage\Migrations\201905050000240_RefactorContactAndSourceCrossTableName.resx">
+      <DependentUpon>201905050000240_RefactorContactAndSourceCrossTableName.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
