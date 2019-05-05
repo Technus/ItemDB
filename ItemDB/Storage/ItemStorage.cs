@@ -23,7 +23,7 @@ namespace ItemDB.Storage
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
 
-        public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<ItemDefinition> Items { get; set; }
 
         public virtual DbSet<Contact> Contacts { get; set; }
 
@@ -35,15 +35,21 @@ namespace ItemDB.Storage
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Item>().HasMany(i => i.Sources).WithRequired(s => s.SourcedItem);
-            modelBuilder.Entity<Item>().HasMany(i => i.Placements).WithRequired(p => p.PlacedItem);
+            modelBuilder.Entity<Source>().Property(s => s.SourcedItemId).IsRequired();
+            modelBuilder.Entity<Source>().Property(s => s.ContactId).IsRequired();
+            
+            modelBuilder.Entity<Placement>().Property(p => p.LocationId).IsRequired();
+            modelBuilder.Entity<Placement>().Property(p => p.PlacedItemId).IsRequired();
 
-            modelBuilder.Entity<Location>().HasMany(l => l.ItemPlacements).WithRequired(p => p.Location);
-            modelBuilder.Entity<Location>().HasMany(l => l.ChildLocations).WithOptional(l => l.ParentLocation);
+            modelBuilder.Entity<ItemDefinition>().HasMany(i => i.Sources).WithRequired(s => s.SourcedItem).HasForeignKey(s=>s.SourcedItemId);
+            modelBuilder.Entity<ItemDefinition>().HasMany(i => i.Placements).WithRequired(p => p.PlacedItem).HasForeignKey(p=>p.PlacedItemId);
 
-            modelBuilder.Entity<Contact>().HasMany(c => c.ItemSources).WithRequired(s => s.Contact);
-            modelBuilder.Entity<Contact>().HasMany(c => c.ItemsManufactured).WithMany(i => (ICollection<Contact>)i.Sources).Map(m =>
-                m.ToTable(nameof(Contact) + nameof(Source)).MapLeftKey(nameof(Contact)+"Id").MapRightKey(nameof(Source)+"Id"));
+            modelBuilder.Entity<Location>().HasMany(l => l.ItemPlacements).WithRequired(p => p.Location).HasForeignKey(p=>p.LocationId);
+            modelBuilder.Entity<Location>().HasMany(l => l.ChildLocations).WithOptional(l => l.ParentLocation).HasForeignKey(p=>p.ParentLocationId);
+
+            modelBuilder.Entity<Contact>().HasMany(c => c.ItemSources).WithRequired(s => s.Contact).HasForeignKey(s=>s.ContactId);
+            modelBuilder.Entity<Contact>().HasMany(c => c.ItemsManufactured).WithMany(i => i.Manufacturers).Map(m =>
+                m.ToTable(nameof(Contact) +"To"+ nameof(Source)).MapLeftKey(nameof(Contact)+"Id").MapRightKey(nameof(Source)+"Id"));
 
             base.OnModelCreating(modelBuilder);
         }
