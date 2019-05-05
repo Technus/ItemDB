@@ -77,12 +77,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Storage\Repositories\ItemDefinitionRepository.cs" />
+    <Compile Include="Storage\Repositories\ContactRepository.cs" />
+    <Compile Include="Storage\Repositories\LocationRepository.cs" />
+    <Compile Include="Storage\Repositories\PlacementRepository.cs" />
+    <Compile Include="Storage\Repositories\Repository.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Core\Model\Contact.cs" />
-    <Compile Include="Core\Model\Item.cs" />
+    <Compile Include="Core\Model\ItemDefinition.cs" />
     <Compile Include="Core\Model\Location.cs" />
     <Compile Include="Core\Model\Placement.cs" />
     <Compile Include="Core\Model\Source.cs" />
@@ -97,6 +102,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Storage\Repositories\SourcesRepository.cs" />
+    <Compile Include="Storage\WorkUnit.cs" />
     <Compile Include="Storage\Migrations\201905041358051_Initial.cs" />
     <Compile Include="Storage\Migrations\201905041358051_Initial.Designer.cs">
       <DependentUpon>201905041358051_Initial.cs</DependentUpon>
@@ -159,7 +166,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Storage\Repositories\" />
     <Folder Include="ViewModel\" />
     <Folder Include="View\" />
   </ItemGroup>
