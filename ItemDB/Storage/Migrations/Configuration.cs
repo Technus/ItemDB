@@ -102,13 +102,13 @@ namespace ItemDB.Storage.Migrations
                     new Placement
                     {
                         Count = 10m,
-                        LocationId=context.Locations.First(l=>l.Name=="Box b").Id,
+                        LocationId=context.Locations.First(l=>l.Name=="Box B").Id,
                         PlacedItemId=context.Items.First(i=>i.Name== "PZ1 Screwdriver").Id
                     },
                     new Placement
                     {
-                        Count=0.000001m,
-                        LocationId=context.Locations.First(l=>l.Name=="Room A").Id,
+                        Count=0.000001m,//There is some ghost but still ~0.0 of it
+                        LocationId=context.Locations.First(l=>l.Name=="ROOM a").Id,//Collation will still ignore the case and match
                         PlacedItemId=context.Items.First(i=>i.Name=="Ghost").Id
                     }
                 );
