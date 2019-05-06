@@ -77,6 +77,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Storage\Migrations\201905051016391_AlterItemNameCollation.cs" />
+    <Compile Include="Storage\Migrations\201905051016391_AlterItemNameCollation.Designer.cs">
+      <DependentUpon>201905051016391_AlterItemNameCollation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Storage\Repositories\ItemDefinitionRepository.cs" />
     <Compile Include="Storage\Repositories\ContactRepository.cs" />
     <Compile Include="Storage\Repositories\LocationRepository.cs" />
@@ -156,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Storage\Migrations\201905050633590_LimitNameLengths.resx">
       <DependentUpon>201905050633590_LimitNameLengths.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Storage\Migrations\201905051016391_AlterItemNameCollation.resx">
+      <DependentUpon>201905051016391_AlterItemNameCollation.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
