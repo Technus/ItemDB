@@ -77,6 +77,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Presentation\View\ContactsView.xaml.cs">
+      <DependentUpon>ContactsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Storage\Migrations\201905051016391_AlterItemNameCollation.cs" />
     <Compile Include="Storage\Migrations\201905051016391_AlterItemNameCollation.Designer.cs">
       <DependentUpon>201905051016391_AlterItemNameCollation.cs</DependentUpon>
@@ -86,6 +89,7 @@
     <Compile Include="Storage\Repositories\LocationRepository.cs" />
     <Compile Include="Storage\Repositories\PlacementRepository.cs" />
     <Compile Include="Storage\Repositories\Repository.cs" />
+    <Compile Include="Presentation\ViewModel\ContactsView.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -130,6 +134,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Presentation\View\ContactsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -172,10 +180,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <PackageReference Include="EntityFramework">
       <Version>6.2.0</Version>
