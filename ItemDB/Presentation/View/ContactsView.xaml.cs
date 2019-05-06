@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ItemDB.Presentation.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,12 @@ namespace ItemDB.Presentation.View
     /// <summary>
     /// Interaction logic for ContactsView.xaml
     /// </summary>
-    public partial class ContactsView : Window
+    public partial class ContactsView
     {
-        public ContactsView()
+        public ContactsView(ContactsViewModel model)
         {
             InitializeComponent();
+            DataContext = model;
         }
     }
 }

@@ -77,6 +77,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\Storage\IIdentifiable.cs" />
+    <Compile Include="Presentation\Commands\SimpleCommand.cs" />
+    <Compile Include="Presentation\ViewModel\MainWindowViewModel.cs" />
     <Compile Include="Presentation\View\ContactsView.xaml.cs">
       <DependentUpon>ContactsView.xaml</DependentUpon>
     </Compile>
@@ -89,8 +92,8 @@
     <Compile Include="Storage\Repositories\LocationRepository.cs" />
     <Compile Include="Storage\Repositories\PlacementRepository.cs" />
     <Compile Include="Storage\Repositories\Repository.cs" />
-    <Compile Include="Presentation\ViewModel\ContactsView.cs" />
-    <Page Include="MainWindow.xaml">
+    <Compile Include="Presentation\ViewModel\ContactsViewModel.cs" />
+    <Page Include="Presentation\View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -129,8 +132,8 @@
       <DependentUpon>201905050633590_LimitNameLengths.cs</DependentUpon>
     </Compile>
     <Compile Include="Storage\Migrations\Configuration.cs" />
-    <Compile Include="Storage\ItemStorage.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Storage\ItemDbStorage.cs" />
+    <Compile Include="Presentation\View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -180,7 +183,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EntityFramework">
       <Version>6.2.0</Version>

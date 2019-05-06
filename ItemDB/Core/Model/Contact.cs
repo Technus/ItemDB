@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ItemDB.Core.Storage;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -9,11 +10,12 @@ using System.Windows;
 
 namespace ItemDB.Core.Model
 {
-    public class Contact : DependencyObject
+    public class Contact : DependencyObject, IIdentifiable
     {
         public Contact(){
             ItemsManufactured = new ObservableCollection<ItemDefinition>();
             ItemSources = new ObservableCollection<Source>();
+
         }
 
         public int Id

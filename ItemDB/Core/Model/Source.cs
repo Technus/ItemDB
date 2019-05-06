@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ItemDB.Core.Storage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Windows;
 
 namespace ItemDB.Core.Model
 {
-    public class Source : DependencyObject
+    public class Source : DependencyObject, IIdentifiable
     {
         public Source()
         {

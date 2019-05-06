@@ -11,6 +11,8 @@ namespace ItemDB.Storage.Repositories
 {
     class ContactRepository:Repository<Contact>,IContactRepository
     {
-        public ContactRepository(DbSet<Contact> contacts) : base(contacts) { }
+        public ContactRepository(DbSet<Contact> contacts) : base(contacts) {
+
+        }
     }
 }

@@ -1,0 +1,15 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ViewModel="clr-namespace:ItemDB.Presentation.ViewModel" x:Class="ItemDB.Presentation.View.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="200" ResizeMode="NoResize">
+    <Window.DataContext>
+        <ViewModel:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Button Content="Open Contacts" Margin="10,10,10,0" VerticalAlignment="Top" Command="{Binding ShowAllContacts, Mode=OneWay}"/>
+    </Grid>
+</Window>

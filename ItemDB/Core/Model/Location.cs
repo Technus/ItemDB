@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ItemDB.Core.Storage;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -9,7 +10,7 @@ using System.Windows;
 
 namespace ItemDB.Core.Model
 {
-    public class Location : DependencyObject
+    public class Location : DependencyObject, IIdentifiable
     {
         public Location()
         {

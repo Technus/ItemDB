@@ -1,4 +1,5 @@
-﻿using ItemDB.Core.Storage.Repositories;
+﻿using ItemDB.Core.Storage;
+using ItemDB.Core.Storage.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ItemDB.Storage.Repositories
 {
-    class Repository<TEntity> : IRepository<TEntity> where TEntity:class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity: class,IIdentifiable
     {
         protected readonly DbSet<TEntity> _dbSet;
 
@@ -17,14 +18,14 @@ namespace ItemDB.Storage.Repositories
             _dbSet = dBSet;
         }
 
-        public TEntity get(int id)
+        public TEntity Get(int id)
         {
-            throw new NotImplementedException();
+            return _dbSet.FirstOrDefault(i=>i.Id==id);
         }
 
-        public IEnumerable<TEntity> getAll()
+        public IEnumerable<TEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return _dbSet;
         }
     }
 }

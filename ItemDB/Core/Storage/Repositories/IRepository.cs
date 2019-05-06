@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ItemDB.Core.Storage.Repositories
 {
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity> where TEntity : class, IIdentifiable
     {
-        TEntity get(int id);
-        IEnumerable<TEntity> getAll();
+        TEntity Get(int id);
+        IEnumerable<TEntity> GetAll();
     }
 }

@@ -14,12 +14,12 @@ namespace ItemDB.Storage
     {
         private readonly ItemDbStorage _context;
 
-        public WorkUnit(ItemDbStorage context)
+        public WorkUnit()
         {
-            _context = context;
+            _context = new ItemDbStorage();
         }
 
-        public IContactRepository Couses => new ContactRepository(_context.Contacts);
+        public IContactRepository Contacts => new ContactRepository(_context.Contacts);
 
         public IItemDefinitionRepository Items => new ItemDefinitionRepository(_context.Items);
 

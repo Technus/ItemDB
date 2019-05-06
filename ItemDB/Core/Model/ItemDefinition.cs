@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Collections.ObjectModel;
+using ItemDB.Core.Storage;
 
 namespace ItemDB.Core.Model
 {
-    public class ItemDefinition :DependencyObject
+    public class ItemDefinition :DependencyObject, IIdentifiable
     {
         public ItemDefinition()
         {
