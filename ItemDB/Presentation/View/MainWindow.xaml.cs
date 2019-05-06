@@ -22,7 +22,7 @@ namespace ItemDB.Presentation.View
     /// </summary>
     public partial class MainWindow
     {
-        public MainWindow()
+        public MainWindow()//View First!
         {
             InitializeComponent();
         }

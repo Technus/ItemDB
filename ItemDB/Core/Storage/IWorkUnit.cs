@@ -16,5 +16,6 @@ namespace ItemDB.Core.Storage
         ISourceRepository Sources { get; }
 
         void Save();
+        bool IsChanged();
     }
 }

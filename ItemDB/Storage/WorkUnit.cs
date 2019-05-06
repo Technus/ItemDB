@@ -34,6 +34,11 @@ namespace ItemDB.Storage
             _context.Dispose();
         }
 
+        public bool IsChanged()
+        {
+            return _context.ChangeTracker.HasChanges();
+        }
+
         public void Save()
         {
             _context.SaveChanges();

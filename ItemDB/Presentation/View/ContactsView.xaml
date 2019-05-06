@@ -25,13 +25,14 @@
             </Grid.RowDefinitions>
             <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
         </Grid>
-        <DataGrid x:Name="loadedContactsDataGrid" AutoGenerateColumns="False" Grid.Column="1" EnableRowVirtualization="True" Margin="10" RowDetailsVisibilityMode="VisibleWhenSelected" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding LoadedContacts}">
+        <DataGrid x:Name="loadedContactsDataGrid" AutoGenerateColumns="False" Grid.Column="1" EnableRowVirtualization="True" Margin="10" RowDetailsVisibilityMode="VisibleWhenSelected" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding LoadedContacts,Mode=TwoWay}">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="idColumn" Header="Id" Width="SizeToHeader" Binding="{Binding Id}"/>
-                <DataGridTextColumn x:Name="nameColumn" Header="Name" Width="SizeToHeader" Binding="{Binding Name}"/>
+                <DataGridTextColumn x:Name="idColumn" Header="Id" Width="SizeToHeader" Binding="{Binding Id, Mode=OneTime}"/>
+                <DataGridTextColumn x:Name="nameColumn" Header="Name" Width="SizeToHeader" Binding="{Binding Name,Mode=TwoWay}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Load All" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="180" Command="{Binding LoadAllContacts, Mode=OneWay}" />
+        <Button Content="Save All" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="180" Command="{Binding SaveAllContacts, Mode=OneWay}" CommandParameter="{Binding WorkUnit, Mode=OneWay}" />
 
     </Grid>
 </Window>

@@ -3,34 +3,53 @@ using ItemDB.Core.Storage;
 using ItemDB.Core.Storage.Repositories;
 using ItemDB.Presentation.Commands;
 using ItemDB.Presentation.View;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ItemDB.Presentation.ViewModel
 {
     public class ContactsViewModel : DependencyObject
     {
-        private readonly IWorkUnit _workUnit;
-        private readonly IContactRepository _contacts;
+        public IWorkUnit WorkUnit { get; private set; }
+        public readonly IContactRepository _contacts;
 
-        public ContactsViewModel()
+        public ContactsViewModel()//Model First!
         {
             //STUB
         }
-        public ContactsViewModel(IWorkUnit workUnit)
+        public ContactsViewModel(IWorkUnit workUnit)//Model First!
         {
             LoadAllContacts = new SimplerCommand
             {
                 Action = () =>
                 {
                     LoadedContacts = new ObservableCollection<Contact>(_contacts.GetAll());
+                    SaveAllContacts.RaiseCanExecuteChanged();
                 }
             };
-            _workUnit = workUnit;
+            SaveAllContacts = new SimplerCommand<IWorkUnit>
+            {
+                Action = ()=> {
+                    workUnit.Save();
+                    SaveAllContacts.RaiseCanExecuteChanged();
+                },
+                CanExecutePredicate = wu => {
+                    return wu?.IsChanged() ?? false;
+                }
+            };
+            WorkUnit = workUnit;
             _contacts = workUnit.Contacts;
         }
 
         public SimplerCommand LoadAllContacts { get; private set; }
+        public SimplerCommand<IWorkUnit> SaveAllContacts { get; private set; }
+
+        public void OnEdit()
+        {
+            SaveAllContacts.RaiseCanExecuteChanged();
+        }
 
         public ObservableCollection<Contact> LoadedContacts
         {

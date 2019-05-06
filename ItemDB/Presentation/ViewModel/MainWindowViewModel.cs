@@ -11,7 +11,7 @@ namespace ItemDB.Presentation.ViewModel
 {
     class MainWindowViewModel
     {
-        public MainWindowViewModel()
+        public MainWindowViewModel()//View First!
         {
 
             ShowAllContacts = new SimplerCommand
