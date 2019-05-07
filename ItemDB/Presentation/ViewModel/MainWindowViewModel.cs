@@ -1,4 +1,5 @@
-﻿using ItemDB.Presentation.Commands;
+﻿using ItemDB.Core.Storage;
+using ItemDB.Presentation.Commands;
 using ItemDB.Presentation.View;
 using ItemDB.Storage;
 using System;
@@ -11,6 +12,8 @@ namespace ItemDB.Presentation.ViewModel
 {
     class MainWindowViewModel
     {
+        private static readonly IWorkUnitProvider WorkUnitProvider=new WorkUnitProvider();
+
         public MainWindowViewModel()//View First!
         {
 
@@ -18,7 +21,7 @@ namespace ItemDB.Presentation.ViewModel
             {
                 Action = () =>
                 {
-                    new ContactsView(new ContactsViewModel(new WorkUnit())).Show();
+                    new ContactsView(new ContactsViewModel(WorkUnitProvider)).Show();
                 }
             };
         }

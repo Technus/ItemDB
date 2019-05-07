@@ -12,44 +12,54 @@ namespace ItemDB.Presentation.ViewModel
 {
     public class ContactsViewModel : DependencyObject
     {
+        public IWorkUnitProvider WorkUnitProvider { get; private set; }
         public IWorkUnit WorkUnit { get; private set; }
-        public readonly IContactRepository _contacts;
 
         public ContactsViewModel()//Model First!
         {
             //STUB
         }
-        public ContactsViewModel(IWorkUnit workUnit)//Model First!
+
+        public ContactsViewModel(IWorkUnitProvider workUnitProvider)//Model First!
         {
+            WorkUnitProvider = workUnitProvider;
+            WorkUnit = WorkUnitProvider.ProvideWorkUnit();
+
             LoadAllContacts = new SimplerCommand
             {
                 Action = () =>
                 {
-                    LoadedContacts = new ObservableCollection<Contact>(_contacts.GetAll());
+                    Clear();
+                    LoadedContacts = new ObservableCollection<Contact>(WorkUnit.Contacts.GetAll());
                     SaveAllContacts.RaiseCanExecuteChanged();
                 }
             };
-            SaveAllContacts = new SimplerCommand<IWorkUnit>
+            SaveAllContacts = new SimpleCommand
             {
                 Action = ()=> {
-                    workUnit.Save();
+                    WorkUnit.Save();
                     SaveAllContacts.RaiseCanExecuteChanged();
                 },
-                CanExecutePredicate = wu => {
-                    return wu?.IsChanged() ?? false;
-                }
+                CanExecutePredicate = () => WorkUnit?.IsChanged() ?? false
             };
-            WorkUnit = workUnit;
-            _contacts = workUnit.Contacts;
+            EditEnding = new SimplerCommand
+            {
+                Action = SaveAllContacts.RaiseCanExecuteChanged
+            };
+        }
+
+        public void Clear()
+        {
+            WorkUnit.Dispose();
+            WorkUnit = WorkUnitProvider.ProvideWorkUnit();
+            LoadedContacts?.Clear();
         }
 
         public SimplerCommand LoadAllContacts { get; private set; }
-        public SimplerCommand<IWorkUnit> SaveAllContacts { get; private set; }
 
-        public void OnEdit()
-        {
-            SaveAllContacts.RaiseCanExecuteChanged();
-        }
+        public SimpleCommand SaveAllContacts { get; private set; }
+
+        public SimplerCommand EditEnding { get; private set; }
 
         public ObservableCollection<Contact> LoadedContacts
         {

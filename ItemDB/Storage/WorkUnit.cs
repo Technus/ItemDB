@@ -10,6 +10,11 @@ using System.Threading.Tasks;
 
 namespace ItemDB.Storage
 {
+    class WorkUnitProvider : IWorkUnitProvider
+    {
+        public IWorkUnit ProvideWorkUnit() => new WorkUnit();
+    }
+
     class WorkUnit : IWorkUnit
     {
         private readonly ItemDbStorage _context;

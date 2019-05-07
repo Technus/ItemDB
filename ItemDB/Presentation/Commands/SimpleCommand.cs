@@ -51,9 +51,9 @@ namespace ItemDB.Presentation.Commands
             Action((TObj)parameter);
         }
     }
-    public class SimplerCommand<TObj> : ICommand
+    public class SimpleCommand : ICommand
     {
-        public Predicate<TObj> CanExecutePredicate { get; set; }
+        public Func<bool> CanExecutePredicate { get; set; }
         public Action Action { get; set; }
 
 
@@ -65,7 +65,7 @@ namespace ItemDB.Presentation.Commands
 
         public bool CanExecute(object parameter)
         {
-            return CanExecutePredicate?.Invoke((TObj)parameter) ?? true;
+            return CanExecutePredicate?.Invoke() ?? true;
         }
 
         public void Execute(object parameter)
