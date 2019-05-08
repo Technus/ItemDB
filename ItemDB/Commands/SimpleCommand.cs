@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace ItemDB.Presentation.Commands
+namespace ItemDB.Commands
 {
     public class SimpleCommand<TPredicateObj,TActionObj> : ICommand
     {
