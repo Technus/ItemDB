@@ -1,5 +1,5 @@
 ﻿using ItemDB.Core.Storage;
-using ItemDB.Presentation.Commands;
+using ItemDB.Commands;
 using ItemDB.Presentation.View;
 using ItemDB.Storage;
 using System;
@@ -21,7 +21,9 @@ namespace ItemDB.Presentation.ViewModel
             {
                 Action = () =>
                 {
-                    new ContactsView(new ContactsViewModel(WorkUnitProvider)).Show();
+                    var view = new ContactsView();
+                    view.DataContext = new ContactsViewModel(WorkUnitProvider);
+                    view.Show();
                 }
             };
         }

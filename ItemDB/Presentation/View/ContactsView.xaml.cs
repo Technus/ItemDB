@@ -20,10 +20,9 @@ namespace ItemDB.Presentation.View
     /// </summary>
     public partial class ContactsView
     {
-        public ContactsView(ContactsViewModel model)//Model First!
+        public ContactsView()
         {
             InitializeComponent();
-            DataContext = model;
         }
     }
 }

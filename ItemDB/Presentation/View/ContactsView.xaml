@@ -16,31 +16,26 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid x:Name="grid1" Grid.Column="1" HorizontalAlignment="Left" Margin="51,456,0,-55" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-        </Grid>
         <DataGrid x:Name="loadedContactsDataGrid" AutoGenerateColumns="False" Grid.Column="1" EnableRowVirtualization="True" Margin="10" RowDetailsVisibilityMode="VisibleWhenSelected" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding LoadedContacts, Mode=TwoWay}">
             <DataGrid.Columns>
-                <DataGridTextColumn  x:Name="idColumn" Header="Id" Width="SizeToHeader" Binding="{Binding Id, Mode=OneWay}" IsReadOnly="True"/>
-                <DataGridTextColumn x:Name="nameColumn" Header="Name" Width="SizeToHeader" Binding="{Binding Name, Mode=TwoWay}"/>
+                <DataGridTextColumn x:Name="idColumn" Header="Id" Width="SizeToCells" Binding="{Binding Id, Mode=OneWay}" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="nameColumn" Header="Name" Width="SizeToCells" Binding="{Binding Name, Mode=TwoWay}"/>
             </DataGrid.Columns>
             <Interactions:Interaction.Triggers>
+                <Interactions:EventTrigger EventName="SelectionChanged">
+                    <Interactions:InvokeCommandAction CommandParameter="{Binding SelectedItems, ElementName=loadedContactsDataGrid}" Command="{Binding OnSelectionChange, Mode=OneWay}"/>
+                </Interactions:EventTrigger>
                 <Interactions:EventTrigger EventName="CellEditEnding">
-                    <Interactions:InvokeCommandAction Command="{Binding EditEnding, Mode=OneWay}"/>
+                    <Interactions:InvokeCommandAction Command="{Binding OnEditEnding, Mode=OneWay}"/>
                 </Interactions:EventTrigger>
                 <Interactions:EventTrigger EventName="SelectionChanged">
-                    <Interactions:InvokeCommandAction Command="{Binding EditEnding, Mode=OneWay}"/>
+                    <Interactions:InvokeCommandAction Command="{Binding OnEditEnding, Mode=OneWay}"/>
                 </Interactions:EventTrigger>
             </Interactions:Interaction.Triggers>
         </DataGrid>
         <Button Content="Load All" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="180" Command="{Binding LoadAllContacts, Mode=OneWay}" />
-        <Button Content="Save All" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="180" Command="{Binding SaveAllContacts, Mode=OneWay}" />
+        <Button Content="Commit All Changes" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="180" Command="{Binding SaveAllContacts, Mode=OneWay}" />
+        <Button Content="Delete Selected" HorizontalAlignment="Left" Margin="10,59.96,0,0" VerticalAlignment="Top" Width="180" Command="{Binding DeleteSelected, Mode=OneWay}" />
 
     </Grid>
 </Window>
