@@ -53,7 +53,7 @@ namespace ItemDB.Presentation.Commands
     }
     public class SimpleCommand : ICommand
     {
-        public Func<bool> CanExecutePredicate { get; set; }
+        public Func<bool> CanExecuteFunc { get; set; }
         public Action Action { get; set; }
 
 
@@ -65,12 +65,29 @@ namespace ItemDB.Presentation.Commands
 
         public bool CanExecute(object parameter)
         {
-            return CanExecutePredicate?.Invoke() ?? true;
+            return CanExecuteFunc?.Invoke() ?? true;
         }
 
         public void Execute(object parameter)
         {
             Action();
+        }
+    }
+    public class SimplerCommand<TObj> : ICommand
+    {
+        public Action<TObj> Action { get; set; }
+
+#pragma warning disable
+        public event EventHandler CanExecuteChanged;
+#pragma warning enable
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object parameter)
+        {
+            Action((TObj)parameter);
         }
     }
     public class SimplerCommand : ICommand
