@@ -5,6 +5,7 @@ using ItemDB.Presentation.Commands;
 using ItemDB.Presentation.View;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -23,24 +24,26 @@ namespace ItemDB.Presentation.ViewModel
         public ContactsViewModel(IWorkUnitProvider workUnitProvider)//Model First!
         {
             WorkUnitProvider = workUnitProvider;
-            WorkUnit = WorkUnitProvider.ProvideWorkUnit();
+            LoadedContacts = new ObservableCollection<Contact>();
+            LoadedContacts.CollectionChanged += LoadedContacts_CollectionChanged;
 
             LoadAllContacts = new SimplerCommand
             {
                 Action = () =>
                 {
-                    Clear();
-                    LoadedContacts = new ObservableCollection<Contact>(WorkUnit.Contacts.GetAll());
-                    SaveAllContacts.RaiseCanExecuteChanged();
+                    PrepareForWork();
+                    WorkUnit.Contacts.GetAll().ToList().ForEach(contact => LoadedContacts.Add(contact));
+                    NotifyChangesMade();
                 }
             };
             SaveAllContacts = new SimpleCommand
             {
                 Action = ()=> {
                     WorkUnit.Save();
-                    SaveAllContacts.RaiseCanExecuteChanged();
+                    LoadedContacts.ToList().ForEach(c => WorkUnit.Reload(c));
+                    NotifyChangesMade();
                 },
-                CanExecutePredicate = () => WorkUnit?.IsChanged() ?? false
+                CanExecuteFunc = () => WorkUnit?.IsChanged() ?? false
             };
             EditEnding = new SimplerCommand
             {
@@ -48,11 +51,34 @@ namespace ItemDB.Presentation.ViewModel
             };
         }
 
-        public void Clear()
+        private void LoadedContacts_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            WorkUnit.Dispose();
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+            {
+                foreach (Contact c in e.NewItems)
+                {
+                    WorkUnit.Contacts.AddOrUpdate(c);
+                }
+            }
+            else if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
+            {
+                foreach(Contact c in e.OldItems)
+                {
+                    WorkUnit.Contacts.Remove(c);
+                }
+            }
+            NotifyChangesMade();
+        }
+
+        public void PrepareForWork()
+        {
             WorkUnit = WorkUnitProvider.ProvideWorkUnit();
-            LoadedContacts?.Clear();
+            LoadedContacts.Clear();
+        }
+
+        public void NotifyChangesMade()
+        {
+            SaveAllContacts.RaiseCanExecuteChanged();
         }
 
         public SimplerCommand LoadAllContacts { get; private set; }

@@ -27,7 +27,7 @@
         </Grid>
         <DataGrid x:Name="loadedContactsDataGrid" AutoGenerateColumns="False" Grid.Column="1" EnableRowVirtualization="True" Margin="10" RowDetailsVisibilityMode="VisibleWhenSelected" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding LoadedContacts, Mode=TwoWay}">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="idColumn" Header="Id" Width="SizeToHeader" Binding="{Binding Id, Mode=OneTime}"/>
+                <DataGridTextColumn  x:Name="idColumn" Header="Id" Width="SizeToHeader" Binding="{Binding Id, Mode=OneWay}" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="nameColumn" Header="Name" Width="SizeToHeader" Binding="{Binding Name, Mode=TwoWay}"/>
             </DataGrid.Columns>
             <Interactions:Interaction.Triggers>
