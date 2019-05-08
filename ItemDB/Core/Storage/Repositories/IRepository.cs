@@ -10,5 +10,7 @@ namespace ItemDB.Core.Storage.Repositories
     {
         TEntity Get(int id);
         IEnumerable<TEntity> GetAll();
+        void AddOrUpdate(TEntity entity);
+        void Remove(TEntity entity);
     }
 }

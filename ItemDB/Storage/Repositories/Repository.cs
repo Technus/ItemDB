@@ -6,6 +6,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using System.Data.Entity.Migrations;
 
 namespace ItemDB.Storage.Repositories
 {
@@ -18,6 +20,11 @@ namespace ItemDB.Storage.Repositories
             _dbSet = dBSet;
         }
 
+        public void AddOrUpdate(TEntity entity)
+        {
+            _dbSet.AddOrUpdate(e=>e.Id,entity);
+        }
+
         public TEntity Get(int id)
         {
             return _dbSet.FirstOrDefault(i=>i.Id==id);
@@ -26,6 +33,11 @@ namespace ItemDB.Storage.Repositories
         public IEnumerable<TEntity> GetAll()
         {
             return _dbSet;
+        }
+
+        public void Remove(TEntity entity)
+        {
+            _dbSet.Remove(entity);
         }
     }
 }

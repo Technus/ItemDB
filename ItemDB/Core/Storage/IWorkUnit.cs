@@ -17,5 +17,6 @@ namespace ItemDB.Core.Storage
 
         void Save();
         bool IsChanged();
+        void Reload(IIdentifiable entity);
     }
 }

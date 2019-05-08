@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace ItemDB.Core.Storage.Repositories
 {
-    public interface IContactRepository:IRepository<Contact>
+    public interface IContactRepository : IRepository<Contact>
     {
-
     }
 }

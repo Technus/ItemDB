@@ -78,7 +78,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\Storage\IIdentifiable.cs" />
-    <Compile Include="Core\Storage\IStorageProvider.cs" />
+    <Compile Include="Core\Storage\IWorkUnitSupplier.cs" />
     <Compile Include="Presentation\Commands\SimpleCommand.cs" />
     <Compile Include="Presentation\ViewModel\MainWindowViewModel.cs" />
     <Compile Include="Presentation\View\ContactsView.xaml.cs">

@@ -48,5 +48,10 @@ namespace ItemDB.Storage
         {
             _context.SaveChanges();
         }
+
+        public void Reload(IIdentifiable entity)
+        {
+            _context.Entry(entity).Reload();
+        }
     }
 }
