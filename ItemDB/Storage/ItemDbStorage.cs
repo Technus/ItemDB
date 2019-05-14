@@ -36,11 +36,6 @@ namespace ItemDB.Storage
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Source>().Property(s => s.Name).HasMaxLength(255);
-            modelBuilder.Entity<Source>().Property(s => s.SourcedItemId).IsRequired();
-            modelBuilder.Entity<Source>().Property(s => s.ContactId).IsRequired();
-            
-            modelBuilder.Entity<Placement>().Property(p => p.LocationId).IsRequired();
-            modelBuilder.Entity<Placement>().Property(p => p.PlacedItemId).IsRequired();
 
             modelBuilder.Entity<ItemDefinition>().Property(i => i.Name).HasMaxLength(255);
             modelBuilder.Entity<ItemDefinition>().HasMany(i => i.Sources).WithRequired(s => s.SourcedItem).HasForeignKey(s=>s.SourcedItemId);
