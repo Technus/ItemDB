@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Collections;
+using System.Collections.Specialized;
 
 namespace ItemDB.Presentation.ViewModel
 {
@@ -106,16 +107,16 @@ namespace ItemDB.Presentation.ViewModel
         public static readonly DependencyProperty LoadedContactsProperty =
             DependencyProperty.Register(nameof(LoadedContacts), typeof(ObservableCollection<Contact>), typeof(ContactsViewModel));
 
-        private void LoadedContacts_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void LoadedContacts_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+            if (e.Action == NotifyCollectionChangedAction.Add)
             {
                 foreach (Contact c in e.NewItems)
                 {
                     WorkUnit.Contacts.AddOrUpdate(c);
                 }
             }
-            else if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
+            else if (e.Action == NotifyCollectionChangedAction.Remove)
             {
                 foreach (Contact c in e.OldItems)
                 {
@@ -139,7 +140,7 @@ namespace ItemDB.Presentation.ViewModel
         public static readonly DependencyProperty SelectedContactsProperty =
             DependencyProperty.Register(nameof(SelectedContacts), typeof(ObservableCollection<Contact>), typeof(ContactsViewModel));
 
-        private void SelectedContacts_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void SelectedContacts_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             NotifySelectionChanged();
         }
